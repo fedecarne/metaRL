@@ -1,0 +1,101 @@
+
+Should I retrain/re-analyse the neuron thing for deepmind?
+
+---
+
+What's the point?
+
+The point is to understand generalization across variations on similar tasks.
+
+How animals acquire task structures and generalize to new variations?
+
+Switching bandit is just a typical two-armed-bandit where the probabilities are always 1 for one action and 0 for the other. 
+This alternates from episode to episode.
+
+In Harlow, the agent has to learn that there is always a valuable image, and they have to select it.
+
+In Color discrimination with priors, the agent has to learn that there are prior probabily for each action. 
+This only makes sense if the agent is imperfect in the discrimination. If it is perfect, there is no point using priors....
+
+
+
+
+-----
+Tasks
+
+
+Left bandit:
+
+- Select always the left action, regardless of stimuli, which is random.
+
+
+Switching bandit:
+- In every episode there is a fixed correct action, regardless of the external stimulus. 
+  The correct side alternates from episode to episode.
+
+Note: try random correct actions instead of alternating actions
+  
+  
+Color discrimination: Worked pretty well. Nice psychometric function.
+Discrimination with alternating priors?
+
+Experiments
+
+In the noiseless version, the psychometric function is perfect and therefore the prior probability of stimulus is irrelevant.
+When we add noise, the prior is taken into account.
+
+One issue is whether the rnn is learning that there are 2 contexts, the 0.8 and 0.2, and switching between these two
+or instead learning a general policy to figure out the bias of that particular block and use it to make the decision.
+
+trying blocks with new stim probabilities seems to point to the second hypothesis.
+
+ - noise vs noisless
+ - test 0.8 0.2
+ - test 0.5 0.5 :  new prior is fine 
+ - test 0.9, 0.9 new prior is fine
+ - test 0.8, 0.2, 0.5 more blocks are fine
+ - test 0.2:0.2:0.8 graded prior
+ - test 300 trials per episode in a 99 tpe trained nn, it start to fail at the end
+
+-----
+Harlow:
+
+The 1D version hasn't worked after 60000 episodes with 20-trial episodes. 
+Tried with 99 trial episodes - also didn't work.
+
+Harlow bandit
+
+-----
+
+To do:
+
+try the the full model again
+
+-  changes:
+    - variable number of trials: the training seems to work even with variable number of trials. 
+
+    - no reset between blocks!!!! seems like with no reset during training it doesn't work
+    
+
+- understand how value changes on time
+
+- add time inside a trial? so far the model has no time
+
+- test for optimality?
+
+- test whether the model is learning the task structure (there are blocks, there are priors) vs re-learning in every episode.
+
+- compare performance with a reguar RL (learning continuously)
+
+- understand better the model, try other algorithm instead of actor-critic? DQN??
+
+- try Switching bandit but with random actions, instead of alternate ones.      
+
+- learn how to save "neural activity" to analyse afterwards
+
+- learn how to use tensorflow on the cloud (gcloud, aws, kubernetes?) - send many models to train
+
+- try regular rnn's
+
+- make harlow work (train for more time?)
+

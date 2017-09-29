@@ -1,0 +1,73 @@
+intro:
+
+- behavior is shaped by trial/error learning
+- reinforcement learning is the math framework
+- rl has made impressive advances in the last 3 years
+- however is still pretty narrow
+- one fundamental problem is lack of flexibility/generalization
+
+- animals, in contrast, behave flexibly
+
+- in the lab, we are interested in decision-making. 
+- decision-making, we know, needs to combine sensory with contextual information
+- aki has developed a task in which animals need to combine stimulus with prior and reward contingencies
+
+- in this mini project, I want to see how rl agents can learn to do this
+
+
+(- ai/rl can inform neuro)
+
+
+lets consider this two tasks with block structure
+
+1) a ff network could never solve a block task, because it has no memory
+2) a rnn could solve the ptask, by averaging the stimulus, but is hard
+3) rnn has a very hard time solving the rtask
+-------------------------------------------------------------------
+meta rl:
+
+- usually, agents receive a stimulus s and produce an action a
+- as I said before, typical rl agents are not very flexible
+- one avenue that is incresingly being explored these days 
+is to train an agent in a distribution
+-------------------------------------------------------------------
+4) both rtask and ptask are easier to solve for the l2l agent
+
+results:
+
+1) the agent learns to solve the task (reward during training)
+  1.a) interestingly, is develops hypothesis sequentially
+
+2) the agent has a bias to one or the other side in both ptas and rtask
+
+3) the agent is able to solve a task with parameters that were never seen before
+  3.a_ this means that has learned to integrate priors and external stimulus
+
+4) the bias evolves as a function of time within a trial
+
+
+
+
+---
+without l2l, that is, without giving previous reward and action and turning off training, 
+is imposible to do rtask, because there is no information on r
+
+ptask is still possible because one can calculate the probability of the stimulus
+
+can r task be solved if I keep training on? dont think so
+
+1) a ff network could never solve a block task
+2) a rnn can solve the ptask
+3) but has a hard time solving the rtask
+4) both rtask and ptask are easier to solve for the l2l agent
+5) it doesn't even need to keep training.
+---
+
+
+to what extent a nn trained to do ptask can peform rtask?
+
+---
+if you train a nn to solve the task with one r, can he do a different?
+
+
+
